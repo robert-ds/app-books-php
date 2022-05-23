@@ -14,6 +14,7 @@ echo $txtID."<br/>".$txtNombre."<br/>".$fileImagen."<br/>".$accion;
 
 switch($accion){
   case "Agregar":
+    //INSERT INTO `libros` (`id`, `nombre`, `imagen`) VALUES (NULL, 'Eloquent javascript', 'eloquent.png');
       echo "Presionando el Botón Agragar";
       break;
 
