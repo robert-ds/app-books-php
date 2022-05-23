@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio</title>
-  <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../../css/bootstrap.min.css" />
 </head>
 <body>
 
-<?php $url="http://".$_SERVER['HTTP_HOST']."/sitioweb" ?>
+<?php $url="http://".$_SERVER['HTTP_HOST'] ?>
 
 <nav class="navbar navbar-expand navbar-dark bg-danger">
   <div class="nav navbar-nav">
-    <a class="nav-item nav-link" href="#">Admin</a>
-    <a class="nav-item nav-link" href="<?php echo $url."/admin//inicio.php"?>">inicio</a>
-    <a class="nav-item nav-link" href="#">libros</a>
-    <a class="nav-item nav-link" href="<?php echo $url;?>">ir al sitio</a>
-    <a class="nav-item nav-link" href="#">cerrar session</a>
+    <a class="nav-item nav-link" href="<?php echo $url."/admin/inicio.php"?>">Admin</a>
+    <a class="nav-item nav-link" href="<?php echo $url."/admin/inicio.php"?>">inicio</a>
+    <a class="nav-item nav-link" href="<?php echo $url."/admin/sections/libros.php"?>">libros</a>
+    <a class="nav-item nav-link" href="<?php echo $url."/src";?>">ir al sitio</a>
+    <a class="nav-item nav-link" href="<?php echo $url."/admin/sections/cerrar.php"?>">cerrar session</a>
   </div>
 </nav>
 
