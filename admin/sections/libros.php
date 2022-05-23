@@ -10,7 +10,24 @@ $txtNombre = (isset($_POST['txtNombre']))? $_POST['txtNombre'] : "";
 $fileImagen = (isset($_FILES['fileImagen']['name']))? $_FILES['fileImagen']['name'] : "";
 $accion = (isset($_POST['accion']))? $_POST['accion'] : "";
 
-echo $txtID."<br/>".$txtNombre."<br/>".$fileImagen."<br/>".$accion
+echo $txtID."<br/>".$txtNombre."<br/>".$fileImagen."<br/>".$accion;
+
+switch($accion){
+  case "Agregar":
+      echo "Presionando el Botón Agragar";
+      break;
+
+  case "Modificar":
+    echo "Presionando el Botón Modificar";
+    break;
+
+  case "Cancelar":
+    echo "Presionando el Botón Cancelar";
+    break;
+
+  default:
+      "No Existe la Acción";
+}
 
 ?>
 
