@@ -2,37 +2,20 @@
 
 <?php
 
-// print_r($_POST);
-// print_r($_FILES);
-
 $txtID = (isset($_POST['txtID']))? $_POST['txtID'] : "";
 $txtNombre = (isset($_POST['txtNombre']))? $_POST['txtNombre'] : "";
 $fileImagen = (isset($_FILES['fileImagen']['name']))? $_FILES['fileImagen']['name'] : "";
 $accion = (isset($_POST['accion']))? $_POST['accion'] : "";
 
-echo $txtID."<br/>".$txtNombre."<br/>".$fileImagen."<br/>".$accion;
-
-$host       = "localhost";
-$db         = "libros";
-$user       = "robert";
-$password   = "";
-
-try {
-    $connect = new PDO("mysql:host=$host;dbname=$db",$user,$password);
-
-    if($connect){
-        echo "Conexion Establecida";
-    }
-}catch(Exception $e){
-    echo $e->getMessage();
-}
+include('../config/db.php');
 
 switch($accion){
   case "Agregar":
-    $SQL = "INSERT INTO `libros` (`id`, `nombre`, `imagen`) VALUES (NULL, 'Eloquent javascript', 'eloquent.png')";
+    $SQL = "INSERT INTO `libros` (`id`, `nombre`, `imagen`) VALUES (NULL, :nombre, :imagen)";
     $query = $connect->prepare($SQL);
+    $query->bindParam(':nombre',$txtNombre);
+    $query->bindParam(':imagen',$fileImagen);
     $query->execute();
-      echo "Presionando el Botón Agragar";
       break;
 
   case "Modificar":
@@ -77,9 +60,9 @@ switch($accion){
                         <br/>
 
                         <div class="btn-group" role="group" aria-label="">
-                            <button type="button" name="accion" value="Agregar" class="btn btn-success">Agregar</button>
-                            <button type="button" name="accion" value="Modificar" class="btn btn-warning">Modificar</button>
-                            <button type="button" name="accion" value="Cancelar" class="btn btn-info">Cancelar</button>
+                            <button type="submit" name="accion" value="Agregar" class="btn btn-success" actived>Agregar</button>
+                            <button type="submit" name="accion" value="Modificar" class="btn btn-warning">Modificar</button>
+                            <button type="submit" name="accion" value="Cancelar" class="btn btn-info">Cancelar</button>
                         </div>
 
                     </form>

@@ -38,7 +38,7 @@ if($_POST){
                                 <input type="password" class="form-control" name="password" placeholder="You password">
                             </div>
                             <br />
-                            <buttom type="submit" class="btn btn-primary">sign</buttom>
+                            <button type="submit" class="btn btn-primary">sign</button>
                         </form>
 
                     </div>
