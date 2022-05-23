@@ -19,7 +19,19 @@ switch($accion){
       break;
 
   case "Modificar":
-    echo "Presionando el Botón Modificar";
+    $SQL = "UPDATE `libros` SET nombre=:nombre WHERE id=:id ";
+    $query = $connect->prepare($SQL);
+    $query->bindParam(':id',$txtID);
+    $query->bindParam(':nombre',$txtNombre);
+    $query->execute();
+
+    if($fileImagen !== ""){
+      $SQL = "UPDATE `libros` SET imagen=:imagen WHERE id=:id ";
+      $query = $connect->prepare($SQL);
+      $query->bindParam(':id',$txtID);
+      $query->bindParam(':imagen',$fileImagen);
+      $query->execute();
+    }
     break;
 
   case "Cancelar":
