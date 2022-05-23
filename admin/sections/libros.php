@@ -30,6 +30,11 @@ switch($accion){
       "No Existe la Acción";
 }
 
+$SQL = "SELECT * FROM `libros` ";
+$query = $connect->prepare($SQL);
+$query->execute();
+$ebookList = $query->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
     <div class="col-md-5">
@@ -86,13 +91,14 @@ switch($accion){
                 </tr>
             </thead>
             <tbody>
+            <?php foreach ($ebookList as $libro) {?>
                 <tr>
-                    <td>2</td>
-                    <td>Aprende php</td>
-                    <td>imagan.jpg</td>
+                    <td><?php echo $libro['id']?></td>
+                    <td><?php echo $libro['nombre']?></td>
+                    <td><?php echo $libro['imagen']?></td>
                     <td>Selecionar | Borrar</td>
                 </tr>
-
+            <?php } ?>
             </tbody>
         </table>
 
