@@ -12,9 +12,26 @@ $accion = (isset($_POST['accion']))? $_POST['accion'] : "";
 
 echo $txtID."<br/>".$txtNombre."<br/>".$fileImagen."<br/>".$accion;
 
+$host       = "localhost";
+$db         = "libros";
+$user       = "robert";
+$password   = "";
+
+try {
+    $connect = new PDO("mysql:host=$host;dbname=$db",$user,$password);
+
+    if($connect){
+        echo "Conexion Establecida";
+    }
+}catch(Exception $e){
+    echo $e->getMessage();
+}
+
 switch($accion){
   case "Agregar":
-    //INSERT INTO `libros` (`id`, `nombre`, `imagen`) VALUES (NULL, 'Eloquent javascript', 'eloquent.png');
+    $SQL = "INSERT INTO `libros` (`id`, `nombre`, `imagen`) VALUES (NULL, 'Eloquent javascript', 'eloquent.png')";
+    $query = $connect->prepare($SQL);
+    $query->execute();
       echo "Presionando el Botón Agragar";
       break;
 
