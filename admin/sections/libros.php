@@ -27,6 +27,14 @@ switch($accion){
     break;
 
   case "Seleccionar":
+    $SQL = "SELECT * FROM `libros` WHERE id=:id ";
+    $query = $connect->prepare($SQL);
+    $query->bindParam(':id',$txtID);
+    $query->execute();
+    $ebook = $query->fetch(PDO::FETCH_LAZY);
+
+    $txtNombre = $ebook['nombre'];
+    $txtImagen = $ebook['imagen'];
 
     break;
 
@@ -60,16 +68,19 @@ $ebookList = $query->fetchAll(PDO::FETCH_ASSOC);
                     <form method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="txtID">ID:</label>
-                            <input type="text" class="form-control" name="txtID" id="txtID" placeholder="ID" />
+                            <input type="text" class="form-control" value="<?php echo $txtID;?>" name="txtID" id="txtID" placeholder="ID" />
                         </div>
 
                         <div class="form-group">
                             <label for="txtNombre">Nombre:</label>
-                            <input type="text" class="form-control" name="txtNombre" id="txtNombre"  placeholder="Nombre del Libro" />
+                            <input type="text" class="form-control" value="<?php echo $txtNombre;?>" name="txtNombre" id="txtNombre"  placeholder="Nombre del Libro" />
                         </div>
 
+
+                        <br/>
                         <div class="form-group">
                             <label for="fileImagen">Imagen:</label>
+                            <?php echo $txtImagen;?>
                             <input type="file" class="form-control" name="fileImagen" id="fileImagen" />
                         </div>
 
