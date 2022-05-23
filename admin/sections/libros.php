@@ -43,7 +43,27 @@
 
 
     <div class="col-md-5">
-        Tabla de Libros (Mostrar los datos de los libros)
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2</td>
+                    <td>Aprende php</td>
+                    <td>imagan.jpg</td>
+                    <td>Selecionar | Borrar</td>
+                </tr>
+
+            </tbody>
+        </table>
+
     </div>
 
 <?php include_once('../template/pie.php');?>
