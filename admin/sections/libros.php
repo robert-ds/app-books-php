@@ -135,7 +135,15 @@ $ebookList = $query->fetchAll(PDO::FETCH_ASSOC);
                         <br/>
                         <div class="form-group">
                             <label for="fileImagen">Imagen:</label>
-                            <?php echo $txtImagen;?>
+                          <br/>
+                            <?php //echo $txtImagen;?>
+
+                            <?php if($txtImagen != ""){ ?>
+
+                                <img class="img-thumbnail rounded" src="../../imgs/<?php echo $txtImagen;?>" width="50px" height="50px" alt="" srcset="" />
+
+                            <?php }?>
+
                             <input type="file" class="form-control" name="fileImagen" id="fileImagen" />
                         </div>
 
@@ -170,9 +178,14 @@ $ebookList = $query->fetchAll(PDO::FETCH_ASSOC);
             <tbody>
             <?php foreach ($ebookList as $libro) {?>
                 <tr>
-                    <td><?php echo $libro['id']?></td>
-                    <td><?php echo $libro['nombre']?></td>
-                    <td><?php echo $libro['imagen']?></td>
+                    <td><?php echo $libro['id'];?></td>
+                    <td><?php echo $libro['nombre'];?></td>
+                    <td>
+
+                      <img class="img-thumbnail rounded" src="../../imgs/<?php echo $libro['imagen'];?>" width="150px" height="150px" alt="" srcset="" />
+
+                    </td>
+
                     <td>
                         <form method="POST">
                             <input type="text" hidden name="txtID" id="txtID" value="<?php echo $libro['id']?>" />
