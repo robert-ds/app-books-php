@@ -14,11 +14,22 @@ switch($accion){
     $SQL = "INSERT INTO `libros` (`id`, `nombre`, `imagen`) VALUES (NULL, :nombre, :imagen)";
     $query = $connect->prepare($SQL);
     $query->bindParam(':nombre',$txtNombre);
-    $query->bindParam(':imagen',$fileImagen);
+
+    $date = new DateTime();
+    $fileName = ($fileImagen != "") ? $date->getTimestamp()."_".$_FILES["fileImagen"]["name"]: "img.jpg";
+
+    $tmpImagen = $_FILES["fileImagen"]["tmp_name"];
+
+    if($tmpImagen != ""){
+        move_uploaded_file($tmpImagen,"../../imgs/".$fileName);
+    }
+
+    $query->bindParam(':imagen',$fileName);
     $query->execute();
-      break;
+    break;
 
   case "Modificar":
+
     $SQL = "UPDATE `libros` SET nombre=:nombre WHERE id=:id ";
     $query = $connect->prepare($SQL);
     $query->bindParam(':id',$txtID);
@@ -26,10 +37,29 @@ switch($accion){
     $query->execute();
 
     if($fileImagen !== ""){
+
+      $date = new DateTime();
+      $fileName = ($fileImagen != "") ? $date->getTimestamp()."_".$_FILES["fileImagen"]["name"]: "img.jpg";
+
+      $tmpImagen = $_FILES["fileImagen"]["tmp_name"];
+      move_uploaded_file($tmpImagen,"../../imgs/".$fileName);
+
+      $SQL = "SELECT imagen FROM `libros` WHERE id=:id ";
+      $query = $connect->prepare($SQL);
+      $query->bindParam(':id',$txtID);
+      $query->execute();
+      $ebook = $query->fetch(PDO::FETCH_LAZY);
+
+      if(isset($ebook["imagen"]) && ($ebook["imagen"] != "img.jpg")){
+        if(file_exists("../../imgs/".$ebook["imagen"])){
+          unlink("../../imgs/".$ebook["imagen"]);
+        }
+      }
+
       $SQL = "UPDATE `libros` SET imagen=:imagen WHERE id=:id ";
       $query = $connect->prepare($SQL);
       $query->bindParam(':id',$txtID);
-      $query->bindParam(':imagen',$fileImagen);
+      $query->bindParam(':imagen',$fileName);
       $query->execute();
     }
     break;
@@ -51,6 +81,18 @@ switch($accion){
     break;
 
   case "Borrar":
+    $SQL = "SELECT imagen FROM `libros` WHERE id=:id ";
+    $query = $connect->prepare($SQL);
+    $query->bindParam(':id',$txtID);
+    $query->execute();
+    $ebook = $query->fetch(PDO::FETCH_LAZY);
+
+    if(isset($ebook["imagen"]) && ($ebook["imagen"] != "img.jpg")){
+        if(file_exists("../../imgs/".$ebook["imagen"])){
+            unlink("../../imgs/".$ebook["imagen"]);
+        }
+    }
+
     $SQL = "DELETE FROM `libros` WHERE id=:id ";
     $query = $connect->prepare($SQL);
     $query->bindParam(':id',$txtID);
@@ -61,6 +103,7 @@ switch($accion){
       "No Existe la Acción";
 }
 
+// Query para mostrar los datos de la base de datos en la tabla
 $SQL = "SELECT * FROM `libros` ";
 $query = $connect->prepare($SQL);
 $query->execute();
