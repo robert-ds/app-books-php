@@ -62,10 +62,11 @@ switch($accion){
       $query->bindParam(':imagen',$fileName);
       $query->execute();
     }
+    header("Location:libros.php");
     break;
 
   case "Cancelar":
-    echo "Presionando el Botón Cancelar";
+    header("Location:libros.php");
     break;
 
   case "Seleccionar":
@@ -97,10 +98,10 @@ switch($accion){
     $query = $connect->prepare($SQL);
     $query->bindParam(':id',$txtID);
     $query->execute();
+
+    header("Location:libros.php");
     break;
 
-  default:
-      "No Existe la Acción";
 }
 
 // Query para mostrar los datos de la base de datos en la tabla
@@ -123,12 +124,12 @@ $ebookList = $query->fetchAll(PDO::FETCH_ASSOC);
                     <form method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="txtID">ID:</label>
-                            <input type="text" class="form-control" value="<?php echo $txtID;?>" name="txtID" id="txtID" placeholder="ID" />
+                            <input type="text" required readonly class="form-control" value="<?php echo $txtID;?>" name="txtID" id="txtID" placeholder="ID" />
                         </div>
 
                         <div class="form-group">
                             <label for="txtNombre">Nombre:</label>
-                            <input type="text" class="form-control" value="<?php echo $txtNombre;?>" name="txtNombre" id="txtNombre"  placeholder="Nombre del Libro" />
+                            <input required type="text" class="form-control" value="<?php echo $txtNombre;?>" name="txtNombre" id="txtNombre"  placeholder="Nombre del Libro" />
                         </div>
 
 
@@ -150,9 +151,12 @@ $ebookList = $query->fetchAll(PDO::FETCH_ASSOC);
                         <br/>
 
                         <div class="btn-group" role="group" aria-label="">
-                            <button type="submit" name="accion" value="Agregar" class="btn btn-success" actived>Agregar</button>
-                            <button type="submit" name="accion" value="Modificar" class="btn btn-warning">Modificar</button>
-                            <button type="submit" name="accion" value="Cancelar" class="btn btn-info">Cancelar</button>
+
+                            <button type="submit" name="accion" <?php echo ($accion == "Seleccionar")? "disabled": ""; ?> value="Agregar" class="btn btn-success"  actived>Agregar</button>
+
+                            <button type="submit" name="accion" <?php echo ($accion != "Seleccionar")? "disabled": ""; ?> value="Modificar" class="btn btn-warning">Modificar</button>
+
+                            <button type="submit" name="accion" <?php echo ($accion != "Seleccionar")? "disabled": ""; ?> value="Cancelar" class="btn btn-info">Cancelar</button>
                         </div>
 
                     </form>
