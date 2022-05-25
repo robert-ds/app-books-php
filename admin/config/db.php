@@ -1,8 +1,8 @@
 <?php
 
 $host       = "";
-$db         = "libros";
-$user       = "";
+$db         = "";
+$user       = "robert";
 $password   = "";
 
 try {
