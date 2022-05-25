@@ -5,7 +5,10 @@
   <p class="lead">Compartimos recursos de lectura, para que disfrutes en casa...</p>
   <hr class="my-2">
   <p>More info</p>
-  <p class="btn btn-primary btn-lg" href="Jumbo action link" role="button">more</p>
+
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="../admin/index.php" role="button">loggin admin</a>
+  </p>
 </div>
 
 <?php include_once("../template/pie.php")?>

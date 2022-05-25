@@ -1,6 +1,19 @@
+
 <?php
+
+session_start();
+
 if($_POST){
-   header('Location:inicio.php');
+    if( ( $_POST['user'] == "dev") && ($_POST['password'] == "12345678") ){
+
+      $_SESSION['user'] == "ok";
+      $_SESSION["user"] = "dev";
+
+      header("Location:./inicio.php");
+    }else{
+        $mensaje = "Error: EL usuario o contraseña son incorrectos";
+    }
+
 }
 ?>
 
@@ -20,16 +33,24 @@ if($_POST){
             <div class="col-md-4"></div>
 
             <div class="col-md-4">
+
                 <br/><br/><br/>
+
                 <div class="card">
                     <div class="card-header">
                         Loggin
                     </div>
                     <div class="card-body">
 
-                        <form method="POST" action="inicio.php">
+                        <?php if(isset($mensaje)){  ?>
+                        <div class="alert alert-danger" role="alert">
+                                <?php echo $mensaje; ?>
+                        </div>
+                        <?php } ?>
+
+                        <form method="POST">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">User:</label>
+                                <label for="exampleInputUser">User:</label>
                                 <input type="text" class="form-control" name="user" placeholder="David">
                             </div>
 
