@@ -1,9 +1,9 @@
 <?php
 
-$host       = "mysql-m";
-$db         = "m3517544_libros";
-$user       = "m3517544rw";
-$password   = "chocolate";
+$host       = $MYSQLHOST;
+$db         = $MYSQLDATABASE;
+$user       = $MYSQLUSER;
+$password   = $MYSQLPASSWORD;
 
 try {
   $connect = new PDO("mysql:host=$host;dbname=$db",$user,$password);
