@@ -1,9 +1,13 @@
 <?php
 
-$host       = $MYSQLHOST;
-$db         = $MYSQLDATABASE;
-$user       = $MYSQLUSER;
-$password   = $MYSQLPASSWORD;
+require_once('../../index.php');
+
+$host = $_ENV['MYSQLHOST'];
+$db = $_ENV['MYSQLDATABASE'];
+$user = $_ENV['MYSQLUSER'];
+$password = $_ENV['MYSQLPASSWORD'];
+
+echo $host." ".$db." ".$user." ".$password;
 
 try {
   $connect = new PDO("mysql:host=$host;dbname=$db",$user,$password);
