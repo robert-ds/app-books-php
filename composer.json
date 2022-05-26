@@ -1,6 +1,6 @@
 {
-    "name": "App CRUD for share books",
-    "description": " small share books",
+    "name": "robert/code",
+    "description": "An small sharing books",
     "license": "MIT",
     "authors": [
         {
@@ -8,7 +8,6 @@
             "email": "vasquez.robert.andres@gmail.com"
         }
     ],
-
     "require": {
         "vlucas/phpdotenv": "^5.4"
     }
