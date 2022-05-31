@@ -26,7 +26,7 @@ if(!isset($_SESSION['user'])){
 
 <nav class="navbar navbar-expand navbar-dark bg-danger">
   <div class="nav navbar-nav">
-    <a class="nav-item nav-link" href="<?php echo $url."/admin/inicio.php"?>">Admin</a>
+    <a class="nav-item nav-link navbar-brand" href="#">Admin</a>
     <a class="nav-item nav-link" href="<?php echo $url."/admin/inicio.php"?>">inicio</a>
     <a class="nav-item nav-link" href="<?php echo $url."/admin/sections/libros.php"?>">libros</a>
     <a class="nav-item nav-link" href="<?php echo $url."/src";?>">ir al sitio</a>

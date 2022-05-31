@@ -9,6 +9,7 @@
   <p class="lead">
     <a class="btn btn-primary btn-lg" href="../admin/index.php" role="button">loggin admin</a>
   </p>
+  <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 </div>
 
 <?php include_once("../template/pie.php")?>
